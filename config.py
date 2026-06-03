@@ -22,7 +22,9 @@ class PostgresConfig:
 @dataclass
 class BotConfig:
     bot: str = os.getenv('BOT_TOKEN')
+    channel: str = os.getenv('CHANNEL')
     owner: str = os.getenv('OWNER')
+    username: str = os.getenv('BOT_USERNAME')
 
 
 @dataclass
@@ -34,11 +36,11 @@ class WebConfig:
     path: str = os.getenv("WEB_PATH")
 
 
-
 @dataclass
 class Configuration:
     database = PostgresConfig()
     bot = BotConfig()
     web = WebConfig()
+
 
 conf = Configuration()

@@ -14,6 +14,7 @@ from bot.buttons import about_bot, settings, language, format_keyboard
 from bot.calls.calls import register, get_info, log, if_image, download_image
 from bot.calls.filters import IsURL
 from bot.calls.states import URL
+from config import conf
 from database import User as Users
 
 message_router = Router()
@@ -51,7 +52,7 @@ async def about_handler(message: Message):
 
 
 @message_router.message(IsURL())
-async def handle_url(message: Message, state: FSMContext, user: User, bot: Bot):
+async def handle_url(message: Message, state: FSMContext, user: User):
     url = str(message.text)
     await state.set_state(URL.waiting)
     await state.update_data(url=url)
@@ -62,8 +63,8 @@ async def handle_url(message: Message, state: FSMContext, user: User, bot: Bot):
                                    "Please check the URL and try again later"))
             log.error(f"\n❌ Failed to fetch image | user={user.full_name}\nurl={url}")
             return
-        bot_user = bot._me.username
-        await message.answer_photo(FSInputFile(path), caption=_("Where did you obtain: @{}").format(bot_user))
+
+        await message.answer_photo(FSInputFile(path), caption=_("Where did you obtain: @{}").format(conf.bot.username))
         for file in glob.glob(f"{path}"):
             os.remove(file)
 

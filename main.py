@@ -31,18 +31,18 @@ BASE_WEBHOOK_URL = conf.web.url
 @dp.startup()
 async def startup(bot: Bot):
     await bot.set_webhook(f"{BASE_WEBHOOK_URL}{WEBHOOK_PATH}", secret_token=WEBHOOK_SECRET)
-    # await bot_settings(bot)
+    await bot_settings(bot)
     await db.create_all()
     os.makedirs('media', exist_ok=True)
     os.makedirs('locales', exist_ok=True)
-    await bot.send_message(chat_id=conf.bot.owner, text='Bot started')
+    await bot.send_message(chat_id=conf.bot.channel, text='Bot started')
 
 
 @dp.shutdown()
 async def shutdown(bot: Bot):
     for file in glob.glob("media/*"):
         os.remove(file)
-    await bot.send_message(chat_id=conf.bot.owner, text='Bot stopped')
+    await bot.send_message(chat_id=conf.bot.channel, text='Bot stopped')
     await bot.session.close()
 
 

@@ -112,28 +112,28 @@ async def bot_settings(bot: Bot):
     command = [BotCommand(command='start', description='start')]
 
     await bot.set_my_commands(command, scope=BotCommandScopeAllPrivateChats())
-    await bot.set_my_commands(command, scope=BotCommandScopeAllGroupChats())
-    await bot.set_my_name('Free Downloader')
-    path = os.path.join(os.getcwd(), 'logo.jpg')
-    photo = FSInputFile(path)
-    await bot.set_my_profile_photo(InputProfilePhotoStatic(photo=photo))
-    await bot.set_my_description(
-        description="This bot helps you download videos and audios from any platform",
-        language_code="en")
-    await bot.set_my_description(
-        description=("Абсолютно бесплатно - скачивайте что угодно и где угодно\n" +
-                     "Если вы обнаружили ошибку, свяжитесь с нами:\n" +
-                     "@all_problems_here_bot\n"),
-        language_code="ru")
-    await bot.set_my_description(
-        description=("Mutlaqo bepul - istalgan narsani, istalgan joyda yuklab oling\n" +
-                     "Agar xatolik topsangiz, biz bilan bog'laning:\n" +
-                     "@all_problems_here_bot\n"),
-        language_code="uz")
-    await bot.set_my_description(
-        description=("완전 무료 - 어디서든 무엇이든 다운로드하세요\n" +
-                     "오류를 발견하시면 저희에게 연락해 주세요:\n" +
-                     "@all_problems_here_bot\n"),
-        language_code="ko")
-    await bot.set_my_short_description("Other services: t.me/all_free_services\n" +
-                                       "Complaints: @all_problems_here_bot\n")
+    # await bot.set_my_commands(command, scope=BotCommandScopeAllGroupChats())
+    # await bot.set_my_name('Free Downloader')
+    # path = os.path.join(os.getcwd(), 'logo.jpg')
+    # photo = FSInputFile(path)
+    # await bot.set_my_profile_photo(InputProfilePhotoStatic(photo=photo))
+    # await bot.set_my_description(
+    #     description="This bot helps you download videos and audios from any platform",
+    #     language_code="en")
+    # await bot.set_my_description(
+    #     description=("Абсолютно бесплатно - скачивайте что угодно и где угодно\n" +
+    #                  "Если вы обнаружили ошибку, свяжитесь с нами:\n" +
+    #                  "@all_problems_here_bot\n"),
+    #     language_code="ru")
+    # await bot.set_my_description(
+    #     description=("Mutlaqo bepul - istalgan narsani, istalgan joyda yuklab oling\n" +
+    #                  "Agar xatolik topsangiz, biz bilan bog'laning:\n" +
+    #                  "@all_problems_here_bot\n"),
+    #     language_code="uz")
+    # await bot.set_my_description(
+    #     description=("완전 무료 - 어디서든 무엇이든 다운로드하세요\n" +
+    #                  "오류를 발견하시면 저희에게 연락해 주세요:\n" +
+    #                  "@all_problems_here_bot\n"),
+    #     language_code="ko")
+    # await bot.set_my_short_description("Other services: t.me/all_free_services\n" +
+    #                                    "Complaints: @all_problems_here_bot\n")

@@ -16,6 +16,7 @@ from yt_dlp.utils import DownloadError
 from bot.buttons import settings
 from bot.calls import states
 from bot.calls.calls import download_video, download_audio, log
+from config import conf
 from database import User as Users
 
 query_router = Router()
@@ -40,7 +41,6 @@ async def download_handler(query: CallbackQuery, state: FSMContext, user: User, 
     states.status = True
     url = data['url']
     assert query.data
-    bot_user = bot._me.username
     assert query.message
     await query.message.edit_caption(caption=_('⌛ Downloading...'))
     path = os.path.join(os.getcwd(), f'media/{user.id}_{int(time.time())}')
@@ -58,7 +58,7 @@ async def download_handler(query: CallbackQuery, state: FSMContext, user: User, 
         for attempt in range(3):
             try:
                 await query.message.answer_video(FSInputFile(actual),
-                                                 caption=_("Where did you obtain: @{}").format(bot_user))
+                                                 caption=_("Where did you obtain: @{}").format(conf.bot.username))
                 break
             except TelegramNetworkError as e:
                 if attempt == 2:
@@ -80,7 +80,6 @@ async def audio_downloader(query: CallbackQuery, state: FSMContext, user: User, 
     states.status = True
     url = data['url']
     assert query.data
-    bot_user = bot._me.username
     assert query.message
     await query.message.edit_caption(caption=_('⌛ Downloading...'))
     path = os.path.join(os.getcwd(), f'media/{user.id}_{int(time.time())}')
@@ -98,7 +97,7 @@ async def audio_downloader(query: CallbackQuery, state: FSMContext, user: User, 
         for attempt in range(3):
             try:
                 await query.message.answer_audio(FSInputFile(actual),
-                                                 caption=_("Where did you obtain: @{}").format(bot_user))
+                                                 caption=_("Where did you obtain: @{}").format(conf.bot.username))
                 break
             except TelegramNetworkError as e:
                 if attempt == 2:
