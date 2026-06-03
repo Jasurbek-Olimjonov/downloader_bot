@@ -10,8 +10,8 @@ load_dotenv('.env')
 class PostgresConfig:
     PG_USER: str = os.getenv('PG_USER')
     PG_PASS: str = os.getenv('PG_PASS')
-    PG_HOST: str = os.getenv('PG_HOST', 'localhost')
-    PG_PORT: str = os.getenv('PG_PORT', '5432')
+    PG_HOST: str = os.getenv('PG_HOST')
+    PG_PORT: str = os.getenv('PG_PORT')
     PG_DB: str = os.getenv('PG_DB')
 
     @property
@@ -26,9 +26,19 @@ class BotConfig:
 
 
 @dataclass
+class WebConfig:
+    url: str = os.getenv("WEB_URL")
+    host: str = os.getenv("WEB_HOST")
+    port: str = os.getenv("WEB_PORT")
+    secret: str = os.getenv("WEB_SECRET")
+    path: str = os.getenv("WEB_PATH")
+
+
+
+@dataclass
 class Configuration:
     database = PostgresConfig()
     bot = BotConfig()
-
+    web = WebConfig()
 
 conf = Configuration()
