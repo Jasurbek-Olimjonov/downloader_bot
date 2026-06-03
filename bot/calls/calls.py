@@ -28,6 +28,7 @@ async def register(user, state: FSMContext):
 def get_info(url: str):
     opts: Any = {
         'quiet': True,
+        'cookiefile': os.path.join(os.getcwd(), 'cookies.txt'),
         'js_runtimes': JS_RUNTIME,
     }
     with yt_dlp.YoutubeDL(opts) as ydl:
@@ -39,6 +40,7 @@ def download_video(url: str, output_path: str):
         'format': 'bestvideo[filesize<1G]+bestaudio[filesize<1G]/best[filesize<1G]',
         'outtmpl': output_path,
         'merge_output_format': 'mp4',
+        'cookiefile': os.path.join(os.getcwd(), 'cookies.txt'),
         'js_runtimes': JS_RUNTIME,
         'postprocessors': [{
             'key': 'FFmpegVideoConvertor',
@@ -53,6 +55,7 @@ def download_audio(url: str, output_path: str):
     ydl_opts: Any = {
         'format': 'bestaudio/best[filesize<1G]',
         'outtmpl': output_path,
+        'cookiefile': os.path.join(os.getcwd(), 'cookies.txt'),
         'js_runtimes': JS_RUNTIME,
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
