@@ -100,7 +100,15 @@ celerybeat.pid
 *.sage.py
 .env
 env/
+.venv/
+media
+logs
+logs.txt
+toml.txt
+migrations/versions
+.idea
 venv/
+TODO
 ENV/
 env.bak/
 venv.bak/
