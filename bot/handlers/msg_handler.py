@@ -3,7 +3,7 @@ import os
 from asyncio import get_event_loop
 from concurrent.futures import ThreadPoolExecutor
 
-from aiogram import Router, F, Bot
+from aiogram import Router, F
 from aiogram.filters import CommandStart
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message, User, FSInputFile

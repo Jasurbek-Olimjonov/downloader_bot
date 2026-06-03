@@ -7,8 +7,7 @@ import aiohttp
 import yt_dlp
 from aiogram import Bot
 from aiogram.fsm.context import FSMContext
-from aiogram.types import BotCommand, FSInputFile, InputProfilePhotoStatic, \
-    BotCommandScopeAllPrivateChats, BotCommandScopeAllGroupChats
+from aiogram.types import BotCommand, BotCommandScopeAllPrivateChats
 
 from database import User
 

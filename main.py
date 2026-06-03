@@ -28,6 +28,7 @@ WEBHOOK_PATH = conf.web.path
 WEBHOOK_SECRET = conf.web.secret
 BASE_WEBHOOK_URL = conf.web.url
 
+
 @dp.startup()
 async def startup(bot: Bot):
     await bot.set_webhook(f"{BASE_WEBHOOK_URL}{WEBHOOK_PATH}", secret_token=WEBHOOK_SECRET)

@@ -57,22 +57,10 @@ async def document_check(message: Message):
 @owner_router.message(F.text == __("Logs ⚠️"))
 async def log_check(message: Message):
     file = os.path.join(os.getcwd(), 'logs/errors.log')
-    need = os.path.join(os.getcwd(), 'logs/errors.txt')
-    with open(file, 'r', encoding='utf-8') as f:
-        text = f.read()
-    with open(need, 'w', encoding='utf-8') as f:
-        f.write(text)
-    os.remove(need)
-    await message.answer_document(FSInputFile(need))
+    await message.answer_document(FSInputFile(file))
 
 
 @owner_router.message(F.text == __("Toml 🔃"))
 async def toml_check(message: Message):
     file = os.path.join(os.getcwd(), 'pyproject.toml')
-    need = os.path.join(os.getcwd(), 'toml.txt')
-    with open(file, 'r', encoding='utf-8') as f:
-        text = f.read()
-    with open(need, 'w', encoding='utf-8') as f:
-        f.write(text)
-    os.remove(need)
-    await message.answer_document(FSInputFile(need))
+    await message.answer_document(FSInputFile(file))
