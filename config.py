@@ -34,6 +34,7 @@ class WebConfig:
     port: str = os.getenv("WEB_PORT")
     secret: str = os.getenv("WEB_SECRET")
     path: str = os.getenv("WEB_PATH")
+    node: str = os.getenv('NODE_PATH')
 
 
 @dataclass

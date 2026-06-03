@@ -9,10 +9,11 @@ from aiogram import Bot
 from aiogram.fsm.context import FSMContext
 from aiogram.types import BotCommand, BotCommandScopeAllPrivateChats
 
+from config import conf
 from database import User
 
-JS_RUNTIME = {'node': {'path': 'C:\\Program Files\\nodejs\\node.exe'}}
-
+JS_RUNTIME = {'node': {'path': conf.web.node}}
+salom = 'salom'
 
 async def register(user, state: FSMContext):
     lan_code = await state.get_value('locale', user.language_code)
