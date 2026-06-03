@@ -1,0 +1,20 @@
+[project]
+name = "downloader-bot"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "aiogram[i18n]>=3.28.2",
+    "aiohttp>=3.13.5",
+    "alembic>=1.18.4",
+    "asyncpg>=0.31.0",
+    "babel>=2.18.0",
+    "booktype>=1.5",
+    "curl-cffi>=0.15.0",
+    "flake8>=7.3.0",
+    "postgres>=4.0",
+    "python-dotenv>=1.2.2",
+    "redis>=5.0.0",
+    "redis-dict>=3.2.5",
+    "sqlalchemy>=2.0.50",
+    "yt-dlp[default]>=2026.3.17",
+]

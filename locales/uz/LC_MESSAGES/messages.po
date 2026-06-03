@@ -1,0 +1,156 @@
+# Uzbek translations for PROJECT.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-06-03 15:39+0900\n"
+"PO-Revision-Date: 2026-05-30 19:32+0900\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: uz\n"
+"Language-Team: uz <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: bot/buttons/inline.py:24
+msgid "Video"
+msgstr "Video"
+
+#: bot/buttons/inline.py:25
+msgid "Audio"
+msgstr "Audio"
+
+#: bot/buttons/inline.py:34
+msgid "Clear memory"
+msgstr "Xotirani tozalash"
+
+#: bot/buttons/keyboard.py:9 bot/handlers/admin.py:25
+msgid "Users"
+msgstr "Foydalanuvchilar"
+
+#: bot/buttons/keyboard.py:10 bot/handlers/admin.py:53 bot/handlers/admin.py:55
+msgid "Documents 📝"
+msgstr "Hujjatlar 📝"
+
+#: bot/buttons/keyboard.py:12 bot/handlers/msg_handler.py:46
+msgid "About 🤖"
+msgstr "Bot haqida 🤖"
+
+#: bot/buttons/keyboard.py:13 bot/handlers/admin.py:36 bot/handlers/admin.py:38
+#: bot/handlers/msg_handler.py:29 bot/handlers/msg_handler.py:31
+msgid "Settings ⚙️"
+msgstr "Sozlamalar ⚙️"
+
+#: bot/buttons/keyboard.py:23 bot/handlers/msg_handler.py:39
+#: bot/handlers/msg_handler.py:43
+msgid "Language 🌐"
+msgstr "Til 🌐"
+
+#: bot/buttons/keyboard.py:24 bot/buttons/keyboard.py:39
+#: bot/handlers/admin.py:31 bot/handlers/msg_handler.py:34
+msgid "Back 🔙"
+msgstr "Orqaga 🔙"
+
+#: bot/buttons/keyboard.py:28 bot/handlers/admin.py:41
+msgid "Check memory 📝"
+msgstr "Xotirani tekshirish 📝"
+
+#: bot/buttons/keyboard.py:37 bot/handlers/admin.py:58
+msgid "Logs ⚠️"
+msgstr "Loglar ⚠️"
+
+#: bot/buttons/keyboard.py:38 bot/handlers/admin.py:69
+msgid "Toml 🔃"
+msgstr "Toml 🔃"
+
+#: bot/handlers/admin.py:22 bot/handlers/admin.py:33
+#: bot/handlers/msg_handler.py:26 bot/handlers/msg_handler.py:36
+#: bot/handlers/query_handler.py:32
+#, python-brace-format
+msgid "Welcome, {}"
+msgstr "Xush kelibsiz, {}!"
+
+#: bot/handlers/admin.py:28
+#, python-brace-format
+msgid "Currently {} users are utilizing our bot"
+msgstr "Hozirda {} nafar foydalanuvchi botdan foydalanmoqda"
+
+#: bot/handlers/admin.py:48
+#, python-brace-format
+msgid ""
+"Current exist files :{len}\n"
+"Current status: {status}"
+msgstr ""
+"Mavjud fayllar soni: {len}\n"
+"Joriy holat: {status}"
+
+#: bot/handlers/msg_handler.py:48
+msgid ""
+"This bot is to help you download\n"
+"videos and audios from these platforms:\n"
+"Instagram 📸,\n"
+"YouTube ▶️\n"
+"Tik-Tok 🎥\n"
+"others....\n"
+"Just send me the url of the content"
+msgstr ""
+"Bu bot quyidagi platformalardan\n"
+"video va audio yuklab olishga yordam beradi:\n"
+"Instagram 📸,\n"
+"YouTube ▶️\n"
+"Tik-Tok 🎥\n"
+"Boshqalar....\n"
+"Kontent URL manzilini yuboring"
+
+#: bot/handlers/msg_handler.py:61
+msgid ""
+"❌ Failed to fetch image\n"
+"Please check the URL and try again later"
+msgstr ""
+"❌ Rasmni yuklab bo'lmadi\n"
+"URL ni tekshirib, keyinroq qayta urinib ko'ring"
+
+#: bot/handlers/msg_handler.py:66 bot/handlers/query_handler.py:61
+#: bot/handlers/query_handler.py:101
+#, python-brace-format
+msgid "Where did you obtain: @{}"
+msgstr "Qayerdan oldingiz: @{}"
+
+#: bot/handlers/msg_handler.py:75
+msgid ""
+"❌ Failed to fetch content\n"
+"Please check the URL and try again later"
+msgstr ""
+"❌ Kontentni yuklab bo'lmadi\n"
+"URL ni tekshirib, keyinroq qayta urinib ko'ring"
+
+#: bot/handlers/query_handler.py:31
+msgid "Chosen"
+msgstr "Tanlandi"
+
+#: bot/handlers/query_handler.py:45 bot/handlers/query_handler.py:85
+msgid "⌛ Downloading..."
+msgstr "⌛ Yuklanmoqda..."
+
+#: bot/handlers/query_handler.py:53 bot/handlers/query_handler.py:93
+msgid ""
+"No suitable format found under 1GB\n"
+"Please try something smaller"
+msgstr ""
+"1GB dan kichik mos format topilmadi\n"
+"Kichikroq kontent bilan urinib ko'ring"
+
+#: bot/handlers/query_handler.py:66 bot/handlers/query_handler.py:106
+msgid "❌ Failed to send file. Please try again."
+msgstr "❌ Faylni yuborib bo'lmadi. Qayta urinib ko'ring."
+
+#: bot/handlers/query_handler.py:121
+msgid "Done ✅"
+msgstr "Bajarildi ✅"
+
