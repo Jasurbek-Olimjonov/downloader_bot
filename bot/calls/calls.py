@@ -37,7 +37,7 @@ def get_info(url: str):
 
 def download_video(url: str, output_path: str):
     ydl_opts: Any = {
-        'format': 'bestvideo[filesize<1G]+bestaudio[filesize<1G]/best[filesize<1G]',
+        'format': 'bestvideo[filesize<1G]+bestaudio[filesize<1G]/bestvideo+bestaudio/best',
         'outtmpl': output_path,
         'merge_output_format': 'mp4',
         'cookiefile': os.path.join(os.getcwd(), 'cookies.txt'),
@@ -53,7 +53,7 @@ def download_video(url: str, output_path: str):
 
 def download_audio(url: str, output_path: str):
     ydl_opts: Any = {
-        'format': 'bestaudio/best[filesize<1G]',
+        'format': 'best[filesize<1G]/bestaudio/best',
         'outtmpl': output_path,
         'cookiefile': os.path.join(os.getcwd(), 'cookies.txt'),
         'js_runtimes': JS_RUNTIME,
