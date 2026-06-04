@@ -68,22 +68,7 @@ async def handle_url(message: Message, state: FSMContext, user: User):
         for file in glob.glob(f"{path}"):
             os.remove(file)
 
-    executor = ThreadPoolExecutor(max_workers=10)
-    try:
-        info = await get_event_loop().run_in_executor(executor, get_info, url)
-    except DownloadError as e:
-        log.error(f"\n❌ Failed to fetch content | user={user.full_name}\nurl={url} | error={e}")
-        await message.answer(_("❌ Failed to fetch content\n"
-                               "Please check the URL and try again later"))
-        return
-
-    thumbnail = info.get('thumbnail', '')
-    title = info.get('title', 'Unknown')
-    duration = info.get('duration_string', '')
-
-    await message.answer_photo(
-        photo=thumbnail,
-        caption=f"🎬 <b>{title}</b>\n⏱ {duration}",
+    await message.answer(
+        text=_("Which format do you need:"),
         reply_markup=format_keyboard(),
-        parse_mode="HTML"
     )

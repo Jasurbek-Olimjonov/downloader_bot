@@ -34,14 +34,25 @@ def get_info(url: str):
     with yt_dlp.YoutubeDL(opts) as ydl:
         return ydl.extract_info(url, download=False)
 
+COMMON_OPTS: Any = {
+    'quiet': True,
+    'no_warnings': True,
+    'noprogress': True,
+    'concurrent_fragment_downloads': 4,
+    'retries': 3,
+    'fragment_retries': 3,
+    'cookiefile': os.path.join(os.getcwd(), 'cookies.txt'),
+    'js_runtimes': JS_RUNTIME,
+    'extractor_args': {'youtube': {'player_client': ['web', 'android']}},
+}
+
 
 def download_video(url: str, output_path: str):
     ydl_opts: Any = {
-        'format': 'bestvideo[filesize<1G]+bestaudio[filesize<1G]/bestvideo+bestaudio/best',
+        **COMMON_OPTS,
+        'format': 'bestvideo[height<=720]+bestaudio/best[height<=720]/best',
         'outtmpl': output_path,
         'merge_output_format': 'mp4',
-        'cookiefile': os.path.join(os.getcwd(), 'cookies.txt'),
-        'js_runtimes': JS_RUNTIME,
         'postprocessors': [{
             'key': 'FFmpegVideoConvertor',
             'preferedformat': 'mp4',
@@ -53,17 +64,15 @@ def download_video(url: str, output_path: str):
 
 def download_audio(url: str, output_path: str):
     ydl_opts: Any = {
-        'format': 'best[filesize<1G]/bestaudio/best',
+        **COMMON_OPTS,
+        'format': 'bestaudio/best',
         'outtmpl': output_path,
-        'cookiefile': os.path.join(os.getcwd(), 'cookies.txt'),
-        'js_runtimes': JS_RUNTIME,
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'mp3',
-            'preferredquality': '320',
+            'preferredquality': '192',  # 320 is overkill, 192 is fine and faster
         }],
     }
-    # noinspection PyTypeChecker
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         ydl.download([url])
 
