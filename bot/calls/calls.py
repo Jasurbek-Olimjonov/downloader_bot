@@ -14,6 +14,7 @@ from database import User
 
 JS_RUNTIME = {'node': {'path': conf.web.node}}
 
+
 async def register(user, state: FSMContext):
     lan_code = await state.get_value('locale', user.language_code)
     user_data = {
@@ -24,15 +25,6 @@ async def register(user, state: FSMContext):
     if status is None:
         await User.create(**user_data)
 
-
-def get_info(url: str):
-    opts: Any = {
-        'quiet': True,
-        'cookiefile': os.path.join(os.getcwd(), 'cookies.txt'),
-        'js_runtimes': JS_RUNTIME,
-    }
-    with yt_dlp.YoutubeDL(opts) as ydl:
-        return ydl.extract_info(url, download=False)
 
 COMMON_OPTS: Any = {
     'quiet': True,
@@ -45,6 +37,15 @@ COMMON_OPTS: Any = {
     'js_runtimes': JS_RUNTIME,
     'extractor_args': {'youtube': {'player_client': ['web', 'android']}},
 }
+
+
+def get_info(url: str):
+    opts: Any = {
+        **COMMON_OPTS,
+        'skip_download': True
+    }
+    with yt_dlp.YoutubeDL(opts) as ydl:
+        return ydl.extract_info(url, download=False)
 
 
 def download_video(url: str, output_path: str):

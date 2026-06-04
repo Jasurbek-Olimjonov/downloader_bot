@@ -2,6 +2,7 @@ import asyncio
 import glob
 import logging
 import os
+from asyncio import CancelledError
 
 from aiogram import Dispatcher, Bot
 from aiogram.client.default import DefaultBotProperties
@@ -64,8 +65,12 @@ async def main():
     await runner.setup()
     site = web.TCPSite(runner, host=WEB_SERVER_HOST, port=WEB_SERVER_PORT)
     await site.start()
-
-    await asyncio.Event().wait()
+    try:
+        await asyncio.Event().wait()
+    except (KeyboardInterrupt, CancelledError):
+        pass
+    finally:
+        await dp.emit_shutdown()
 
 
 if __name__ == '__main__':

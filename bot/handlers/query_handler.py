@@ -21,6 +21,7 @@ from database import User as Users
 
 query_router = Router()
 query_router.callback_query.filter(F.from_user.as_("user"))
+executor = ThreadPoolExecutor(max_workers=4)
 
 
 @query_router.callback_query(F.data.startswith('choose_'))
@@ -46,13 +47,13 @@ async def download_handler(query: CallbackQuery, state: FSMContext, user: User, 
     path = os.path.join(os.getcwd(), f'media/{user.id}_{int(time.time())}')
     try:
         await bot.send_chat_action(user.id, action=ChatAction.RECORD_VIDEO)
-        executor = ThreadPoolExecutor(max_workers=10)
         try:
             await get_event_loop().run_in_executor(executor, download_video, url, f"{path}.%(ext)s")
         except DownloadError as e:
             await query.message.answer(_("No suitable format found under 1GB\n"
                                          "Please try something smaller"))
             log.error(f"Failed to download file | user={user.full_name}\nurl={url} | error={e}")
+            return
         actual = glob.glob(f"{path}.*")[0]
         await bot.send_chat_action(user.id, action=ChatAction.UPLOAD_VIDEO)
         for attempt in range(3):
@@ -85,13 +86,13 @@ async def audio_downloader(query: CallbackQuery, state: FSMContext, user: User, 
     path = os.path.join(os.getcwd(), f'media/{user.id}_{int(time.time())}')
     try:
         await bot.send_chat_action(user.id, action=ChatAction.RECORD_VOICE)
-        executor = ThreadPoolExecutor(max_workers=10)
         try:
             await get_event_loop().run_in_executor(executor, download_audio, url, f"{path}.%(ext)s")
         except DownloadError as e:
             await query.message.answer(_("No suitable format found under 1GB\n"
                                          "Please try something smaller"))
             log.error(f"Failed to download file | user={user.full_name}\nurl={url} | error={e}")
+            return
         actual = glob.glob(f"{path}.*")[0]
         await bot.send_chat_action(user.id, action=ChatAction.UPLOAD_VOICE)
         for attempt in range(3):

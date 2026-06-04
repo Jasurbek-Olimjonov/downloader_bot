@@ -19,7 +19,7 @@ from database import User as Users
 
 message_router = Router()
 message_router.message.filter(F.from_user.as_("user"))
-
+executor = ThreadPoolExecutor(max_workers=4)
 
 @message_router.message(CommandStart())
 async def starter(message: Message, user: User, state: FSMContext):
@@ -68,7 +68,21 @@ async def handle_url(message: Message, state: FSMContext, user: User):
         for file in glob.glob(f"{path}"):
             os.remove(file)
 
-    await message.answer(
-        text=_("Which format do you need:"),
+    try:
+        info = await get_event_loop().run_in_executor(executor, get_info, url)
+    except DownloadError as e:
+        log.error(f"\n❌ Failed to fetch content | user={user.full_name}\nurl={url} | error={e}")
+        await message.answer(_("❌ Failed to fetch content\n"
+                               "Please check the URL and try again later"))
+        return
+
+    thumbnail = info.get('thumbnail', '')
+    title = info.get('title', 'Unknown')
+    duration = info.get('duration_string', '')
+
+    await message.answer_photo(
+        photo=thumbnail,
+        caption=f"🎬 <b>{title}</b>\n⏱ {duration}",
         reply_markup=format_keyboard(),
+        parse_mode="HTML"
     )
